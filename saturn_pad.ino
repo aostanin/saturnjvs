@@ -1,8 +1,8 @@
 #include "SaturnPad.h"
 #include <Wire.h>
 
-SaturnPad pad1(0, 1, 5, 6, 7, 8);
-SaturnPad pad2(0, 1, 9, 10, 11, 12);
+SaturnPad pad1(5, 6, 0, 3, 1, 4, 2);
+SaturnPad pad2(11, 12, 7, 9, 8, 10, 13);
 
 enum Command {
   COMMAND_INFO = 0x10,
