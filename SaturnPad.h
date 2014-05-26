@@ -68,7 +68,7 @@ class SaturnPad
       TYPE_ANALOG
     };
 
-    SaturnPad(uint8_t s0_pin, uint8_t s1_pin, uint8_t d0_pin, uint8_t d1_pin, uint8_t d2_pin, uint8_t d3_pin);
+    SaturnPad(uint8_t s0_pin, uint8_t s1_pin, uint8_t s2_pin, uint8_t d0_pin, uint8_t d1_pin, uint8_t d2_pin, uint8_t d3_pin);
 
     void begin();
     void loop();
@@ -83,7 +83,7 @@ class SaturnPad
     void readDigital();
     void readAnalog();
 
-    uint8_t _s_pins[2];
+    uint8_t _s_pins[3];
     uint8_t _d_pins[4];
 
     PadType _pad_type;

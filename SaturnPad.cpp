@@ -1,9 +1,10 @@
 #include "SaturnPad.h"
 
-SaturnPad::SaturnPad(uint8_t s0_pin, uint8_t s1_pin, uint8_t d0_pin, uint8_t d1_pin, uint8_t d2_pin, uint8_t d3_pin)
+SaturnPad::SaturnPad(uint8_t s0_pin, uint8_t s1_pin, uint8_t s2_pin, uint8_t d0_pin, uint8_t d1_pin, uint8_t d2_pin, uint8_t d3_pin)
 {
   _s_pins[0] = s0_pin;
   _s_pins[1] = s1_pin;
+  _s_pins[2] = s2_pin;
   _d_pins[0] = d0_pin;
   _d_pins[1] = d1_pin;
   _d_pins[2] = d2_pin;
@@ -12,7 +13,7 @@ SaturnPad::SaturnPad(uint8_t s0_pin, uint8_t s1_pin, uint8_t d0_pin, uint8_t d1_
 
 void SaturnPad::begin()
 {
-  for (uint8_t i = 0; i < 2; i++)
+  for (uint8_t i = 0; i < 3; i++)
     pinMode(_s_pins[i], OUTPUT);
   for (uint8_t i = 0; i < 4; i++)
     pinMode(_d_pins[i], INPUT_PULLUP);
@@ -68,6 +69,8 @@ SaturnPad::Nibble SaturnPad::readNibble(uint8_t s0, uint8_t s1)
 {
   digitalWrite(_s_pins[0], s0);
   digitalWrite(_s_pins[1], s1);
+
+  delayMicroseconds(500);
 
   Nibble nibble;
   nibble.components.bit0 = digitalRead(_d_pins[0]);
