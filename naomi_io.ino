@@ -61,7 +61,6 @@ void switchStatusCallback(uint8_t controller, JVS::PlayerSwitchStatus *switchSta
 void setup()
 {
   Wire.begin();
-  Serial.begin(115200);
 
   jvs.begin();
   jvs.setSwitchStatusCallback(&switchStatusCallback);

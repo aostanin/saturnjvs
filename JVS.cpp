@@ -54,7 +54,7 @@ inline uint8_t JVS::readByte()
 
 bool JVS::readPacket()
 {
-  char data = _serial.read();
+  uint8_t data = _serial.read();
   if (data != 0xE0)
     return false;
 
@@ -88,7 +88,6 @@ bool JVS::readPacket()
 
   if (header->address != 0xFF && header->address != _address) {
     // Not for us
-    Serial.println("not for me");
     return false;
   }
 
@@ -155,7 +154,7 @@ void JVS::handleCommand()
 
   if (checksum(_read_buffer, _read_buffer_size - 1) != _read_buffer[_read_buffer_size - 1]) {
     *status = STATUS_SUM_ERROR;
-    Serial.println("Checksum error");
+    //Serial.println("Checksum error");
   }
 
   uint8_t *command = (_read_buffer + sizeof(Header));
@@ -283,9 +282,9 @@ void JVS::handleCommand()
       default:
         *status = STATUS_COMMAND_UNKNOWN;
 
-        Serial.print("Unknown command: ");
-        Serial.print(*command, HEX);
-        Serial.println();
+        //Serial.print("Unknown command: ");
+        //Serial.print(*command, HEX);
+        //Serial.println();
         break;
     }
   }
