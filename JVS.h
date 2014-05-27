@@ -104,7 +104,7 @@ class JVS
     static const uint8_t _COMMAND_REVISION;
     static const uint8_t _JAMMA_VIDEO_REVISION;
     static const uint8_t _TRANSMISSION_SYSTEM_REVISION;
-    static const uint8_t _FEATURES[13];
+    static const uint8_t _FEATURES[17];
 };
 
 #endif

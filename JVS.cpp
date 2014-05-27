@@ -5,7 +5,7 @@ const char *JVS::_IO_ID = "SaturnJVS;I/O Board;Ver 1.00;04/05";
 const uint8_t JVS::_COMMAND_REVISION = 0x11;
 const uint8_t JVS::_JAMMA_VIDEO_REVISION = 0x20;
 const uint8_t JVS::_TRANSMISSION_SYSTEM_REVISION = 0x10;
-const uint8_t JVS::_FEATURES[13] = { 0x01, 0x02, 0x0f, 0x00, 0x02, 0x02, 0x00, 0x00, 0x03, 0x08, 0x00, 0x00, 0x00 };
+const uint8_t JVS::_FEATURES[17] = { 0x01, 0x02, 0x0f, 0x00, 0x02, 0x02, 0x00, 0x00, 0x03, 0x08, 0x00, 0x00, 0x04, 0x02, 0x00, 0x00, 0x00 };
 
 JVS::JVS(HardwareSerial &serial, uint8_t re_pin, uint8_t sense_pin) : _serial(serial), _re_pin(re_pin), _sense_pin(sense_pin), _address(-1), _switch_status_callback(NULL)
 {
@@ -219,8 +219,8 @@ void JVS::handleCommand()
         response++;
 
         // TODO: Make this settable?
-        memcpy(response, _FEATURES, 3 * 4 + 1);
-        response += 3 * 4 + 1;
+        memcpy(response, _FEATURES, 4 * 4 + 1);
+        response += 4 * 4 + 1;
         break;
 
       case COMMAND_GET_SWITCH_STATE:
@@ -264,6 +264,22 @@ void JVS::handleCommand()
       }
 
       case COMMAND_GET_ANALOG_STATE:
+      {
+        uint8_t channel_count = command[1];
+        command += 2;
+
+        response[0] = REPORT_NORMAL;
+        response++;
+
+        for (uint8_t i = 0; i < channel_count; i++) {
+          response[0] = 0x00;
+          response[1] = 0x00;
+          response += 2;
+        }
+        break;
+      }
+
+      case COMMAND_GET_ROTARY_STATE:
       {
         uint8_t channel_count = command[1];
         command += 2;
