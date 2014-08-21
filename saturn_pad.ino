@@ -58,12 +58,12 @@ void respondStatus()
     digitalStatus->button_down = state.button_down;
     digitalStatus->button_left = state.button_left;
     digitalStatus->button_right = state.button_right;
-    digitalStatus->button_1 = state.button_a;
-    digitalStatus->button_2 = state.button_b;
-    digitalStatus->button_3 = state.button_c;
-    digitalStatus->button_4 = state.button_x;
-    digitalStatus->button_5 = state.button_y;
-    digitalStatus->button_6 = state.button_z;
+    digitalStatus->button_1 = state.button_x;
+    digitalStatus->button_2 = state.button_y;
+    digitalStatus->button_3 = state.button_z;
+    digitalStatus->button_4 = state.button_a;
+    digitalStatus->button_5 = state.button_b;
+    digitalStatus->button_6 = state.button_c;
     digitalStatus->button_7 = state.button_l;
     digitalStatus->button_8 = state.button_r;
 
